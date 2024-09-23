@@ -12,7 +12,7 @@ N_KO		= 0
 #                                     NAMES                                    #
 #==============================================================================#
 
-UNAME 			= $(shell whoami)
+UNAME 			= $(shell uname)
 NAME 			= fdf
 
 ### Message Vars
@@ -45,10 +45,8 @@ FILES = main.c
 
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))
-SRC_BONUS		= $(addprefix $(BONUS_PATH)/, $(FILES_BONUS))
 
 OBJS	= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
-OBJS_BONUS	= $(SRC_BONUS:$(BONUS_PATH)/%.c=$(BUILD_PATH)/%.o)
 
 ### Libraries Archives
 LIBFT_ARC	= $(LIBFT_PATH)libft.a
@@ -83,21 +81,15 @@ MKDIR_P	= mkdir -p
 #                                  RULES                                       #
 #==============================================================================#
 
-##@ push_swap Compilation Rules 🏗
+##@ fdf Compilation Rules 🏗
 
 all: deps $(BUILD_PATH) $(NAME) ## Compile Mandatory version
 
-$(NAME): $(LIBFT_ARC) $(BUILD_PATH) $(OBJS) $(OBJS_BONUS) ## Compile Mandatory version
+$(NAME): $(LIBFT_ARC) $(BUILD_PATH) $(OBJS) ## Compile Mandatory version
 	@echo "$(YEL)Compiling $(MAG)$(NAME)$(YEL) mandatory version$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) -o $(NAME) -L $(LIBFT_PATH) -lft
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make --no-print-directory norm
-
-bonus:	all $(NAME_BONUS)	## Compile Bonus version
-	@echo "$(YEL)Compiling $(MAG)$(NAME)$(YEL) bonus version$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS) -L $(LIBFT_PATH) -lft
-	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
-	@make --no-print-directory norm_bonus
 
 deps:		## Download/Update deps
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
@@ -111,10 +103,6 @@ deps:		## Download/Update deps
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -I $(LIBFT_PATH) -MMD -MP -c $< -o $@
-
-$(BUILD_PATH)/%.o: $(BONUS_PATH)/%.c
-	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
