@@ -16,6 +16,9 @@ UNAME 			= $(shell whoami)
 NAME 			= fdf
 
 ### Message Vars
+_NAME	 		= [$(MAG)FdF$(D)]
+_LIBFT	 		= [$(MAG)libft$(D)]
+_MLX	 		= [$(MAG)mlx$(D)]
 _SUCCESS 		= [$(GRN)SUCCESS$(D)]
 _INFO 			= [$(BLU)INFO$(D)]
 _NORM 			= [$(MAG)Norminette$(D)]
@@ -35,6 +38,7 @@ BUILD_PATH		= .build
 TEMP_PATH		= .temp
 TESTS_PATH		= files
 LIBFT_PATH		= $(LIBS_PATH)
+MLX_PATH		= $(LIBS_PATH)/mlx
 
 ### Files Source
 FILES = main.c
@@ -47,9 +51,9 @@ SRC_BONUS		= $(addprefix $(BONUS_PATH)/, $(FILES_BONUS))
 OBJS	= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 OBJS_BONUS	= $(SRC_BONUS:$(BONUS_PATH)/%.c=$(BUILD_PATH)/%.o)
 
-TXT		= $(addprefix $(TEMP_PATH)/, $(TXT_NAMES))
-
+### Libraries Archives
 LIBFT_ARC	= $(LIBFT_PATH)libft.a
+MLX_ARC		= $(MLX_PATH)/libmlx.a
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -62,6 +66,11 @@ DFLAGS		= -g
 
 INC			= -I.
 
+ifeq ($(shell uname), Linux)
+	MLXFLAGS		+= -lXext -lX11
+else
+	MLXFLAGS		+= -L./inc/mlx -framework OpenGL -framework AppKit
+endif
 #==============================================================================#
 #                                COMMANDS                                      #
 #==============================================================================#
@@ -69,6 +78,8 @@ INC			= -I.
 RM		= rm -rf
 AR		= ar rcs
 MKDIR_P	= mkdir -p
+
+MAKE	= make -C
 
 #==============================================================================#
 #                                  RULES                                       #
@@ -89,10 +100,12 @@ bonus:	all $(NAME_BONUS)	## Compile Bonus version
 	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS) -L $(LIBFT_PATH) -lft
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make --no-print-directory norm_bonus
-	#
+
 deps:		## Download/Update deps
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
-		else echo "$(YEL)[libft]$(D) folder found ✌️";  fi
+		else echo "$(YEL)[libft]$(D) folder found ✌️";  i
+	@if test ! -d "$(MLX_PATH)"; then make get_mlx; \
+		else echo "$(YEL)[mlx]$(D) folder found"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
 
 -include $(BUILD_PATH)/%.d
@@ -116,6 +129,10 @@ $(TEMP_PATH):
 $(LIBFT_ARC):
 	@$(MAKE) $(LIBFT_PATH)
 
+$(MLX_ARC):
+	@echo "[$(BCYA)Building$(D) $(_MLX) $(BCYA)module$(D)]"
+	$(MAKE) $(MLX_PATH)
+
 get_libft:
 	@echo "* $(CYA)Getting Libft submodule$(D)]"
 	@if test ! -d "$(LIBFT_PATH)"; then \
@@ -125,6 +142,11 @@ get_libft:
 		echo "* $(GRN)Libft submodule already exists ✌️"; \
 	echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"; \
 	fi
+
+get_mlx: 
+	@echo "[$(BCYA)Getting$(D) $(_MLX) $(BCYA)submodule$(D)]"
+	git clone git@github.com:42Paris/minilibx-linux.git $(MLX_PATH)
+	@echo "* $(_MLX) submodule download : $(_SUCCESS) $(YEL)🖔$(D)"
 
 ##@ Norm Rules
 
