@@ -43,7 +43,6 @@ MLX_PATH		= $(LIBS_PATH)/mlx
 ### Files Source
 FILES = main.c
 
-
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))
 SRC_BONUS		= $(addprefix $(BONUS_PATH)/, $(FILES_BONUS))
@@ -71,6 +70,7 @@ ifeq ($(shell uname), Linux)
 else
 	MLXFLAGS		+= -L./inc/mlx -framework OpenGL -framework AppKit
 endif
+
 #==============================================================================#
 #                                COMMANDS                                      #
 #==============================================================================#
@@ -78,8 +78,6 @@ endif
 RM		= rm -rf
 AR		= ar rcs
 MKDIR_P	= mkdir -p
-
-MAKE	= make -C
 
 #==============================================================================#
 #                                  RULES                                       #
@@ -103,7 +101,7 @@ bonus:	all $(NAME_BONUS)	## Compile Bonus version
 
 deps:		## Download/Update deps
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
-		else echo "$(YEL)[libft]$(D) folder found ✌️";  i
+		else echo "$(YEL)[libft]$(D) folder found ✌️"; fi 
 	@if test ! -d "$(MLX_PATH)"; then make get_mlx; \
 		else echo "$(YEL)[mlx]$(D) folder found"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
