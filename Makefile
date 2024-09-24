@@ -34,10 +34,11 @@ _SEP 			= =====================
 SRC_PATH		= src
 BONUS_PATH		= bonus
 LIBS_PATH		= lib
+INCLUDE_PATH	= inc
 BUILD_PATH		= .build
 TEMP_PATH		= .temp
 TESTS_PATH		= files
-LIBFT_PATH		= $(LIBS_PATH)
+LIBFT_PATH		= $(LIBS_PATH)/libft
 MLX_PATH		= $(LIBS_PATH)/mlx
 
 ### Files Source
@@ -49,7 +50,7 @@ SRC		= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS	= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 
 ### Libraries Archives
-LIBFT_ARC	= $(LIBFT_PATH)libft.a
+LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 MLX_ARC		= $(MLX_PATH)/libmlx.a
 
 #==============================================================================#
@@ -61,7 +62,7 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 DFLAGS		= -g
 
-INC			= -I.
+INC			= -I $(INCLUDE_PATH)
 
 ifeq ($(shell uname), Linux)
 	MLXFLAGS		+= -lXext -lX11
@@ -85,9 +86,9 @@ MKDIR_P	= mkdir -p
 
 all: deps $(BUILD_PATH) $(NAME) ## Compile Mandatory version
 
-$(NAME): $(LIBFT_ARC) $(BUILD_PATH) $(OBJS) ## Compile Mandatory version
+$(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_PATH) $(OBJS) ## Compile Mandatory version
 	@echo "$(YEL)Compiling $(MAG)$(NAME)$(YEL) mandatory version$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) -o $(NAME) -L $(LIBFT_PATH) -lft
+	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) $(INC) $(LIBFT_ARC) $(MLX_ARC) $(MLXFLAGS) -o $(NAME)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	@make --no-print-directory norm
 
@@ -102,7 +103,7 @@ deps:		## Download/Update deps
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -I $(LIBFT_PATH) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)

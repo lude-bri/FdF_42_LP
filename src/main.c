@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../lib/mlx/mlx.h"
 
 int	main(void)
 {
 	void	*mlx;
-	void	*mlx_win;
+	void	*mlx_window;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "MyFirstWindow");
+	mlx_window = mlx_new_window(mlx, 500, 500, "FdF");
 	mlx_loop(mlx);
 }
