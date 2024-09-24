@@ -1,0 +1,3 @@
+src/main.c: Error!
+Error: FORBIDDEN_CS         (line:  26, col:   5):	Forbidden control structure
+Error: FORBIDDEN_CS         (line:  28, col:   9):	Forbidden control structure
