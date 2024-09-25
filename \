@@ -64,7 +64,7 @@ int	main(void)
 	{
 		for (int x = W * 0.2; x < W * 0.8; x++)
 		{
-			mlx_pixel_put(vars.mlx, vars.win, x, y, 0x000000);
+			mlx_pixel_put(vars.mlx, vars.win, x, y, 0x00ffff);
 		}
 	}
 	mlx_hook(vars.win, 17, 2, close, &vars);

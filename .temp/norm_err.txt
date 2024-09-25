@@ -2,3 +2,7 @@ src/main.c: Error!
 Error: CONSECUTIVE_NEWLINES (line:  36, col:   1):	Consecutive newlines
 Error: FORBIDDEN_TYPEDEF    (line:  37, col:   1):	Typedef declaration are not allowed in .c files
 Error: TAB_REPLACE_SPACE    (line:  37, col:   1):	Found tab when expecting space
+Error: FORBIDDEN_CS         (line:  56, col:   5):	Forbidden control structure
+Error: FORBIDDEN_CS         (line:  58, col:   9):	Forbidden control structure
+Error: FORBIDDEN_CS         (line:  63, col:   5):	Forbidden control structure
+Error: FORBIDDEN_CS         (line:  65, col:   9):	Forbidden control structure
