@@ -55,5 +55,3 @@ int	main(void)
 	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
 	mlx_loop(vars.mlx);
 }
-
-
