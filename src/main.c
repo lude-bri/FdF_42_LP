@@ -43,7 +43,8 @@ typedef struct	s_vars
 static int	close(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
-	return (0);
+	mlx_destroy_display(vars->mlx);
+	exit (0);
 }
 
 int	main(void)
@@ -52,6 +53,6 @@ int	main(void)
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, W, H, "Test");
-	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
+	mlx_hook(vars.win, 17, 0, close, &vars);
 	mlx_loop(vars.mlx);
 }
