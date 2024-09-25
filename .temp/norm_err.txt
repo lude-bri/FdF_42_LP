@@ -1,8 +1,0 @@
-src/main.c: Error!
-Error: CONSECUTIVE_NEWLINES (line:  36, col:   1):	Consecutive newlines
-Error: FORBIDDEN_TYPEDEF    (line:  37, col:   1):	Typedef declaration are not allowed in .c files
-Error: TAB_REPLACE_SPACE    (line:  37, col:   1):	Found tab when expecting space
-Error: SPC_AFTER_OPERATOR   (line:  55, col:  29):	missing space after operator
-Error: SPC_BFR_OPERATOR     (line:  55, col:  29):	missing space before operator
-Error: CONSECUTIVE_NEWLINES (line:  59, col:   1):	Consecutive newlines
-Error: EMPTY_LINE_EOF       (line:  59, col:   1):	Empty line at end of file
