@@ -16,4 +16,46 @@
 # include <stdio.h>
 # include "../lib/mlx/mlx.h"
 
+//This holds the values of watch point on the map
+typedef struct	s_point
+{
+	float	x;
+	float	y;
+	int		z;
+	int		color;
+}			t_point;
+
+//This will hold all the points of the map
+typedef struct	s_map
+{
+	int		w;
+	int		h;
+	t_point	*coord;
+}			t_map;
+
+//This is needed for building the image
+typedef struct	s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_img;
+
+//This will be our visual environment
+typedef struct	s_mlx
+{
+	void	*mlx_connect;
+	void	*mlx_win;
+	t_map	*map;
+	int		zoom;
+	float	z_zoom;
+	int		shift_x;
+	int		shift_y;
+	float	view;
+	float	c_factor;
+	t_img	img;
+}			t_mlx;
+
 #endif
