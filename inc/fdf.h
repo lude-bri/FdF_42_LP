@@ -6,12 +6,16 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 22:49:27 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/26 11:15:00 by luigi            ###   ########.fr       */
+/*   Updated: 2024/09/26 12:40:54 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+/* ************************************************************************** */
+/*                                  INCLUDES                                  */
+/* ************************************************************************** */
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -23,6 +27,16 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include "../lib/mlx/mlx.h"
+# include "../lib/libft/libft_42/libft.h"
+
+/* ************************************************************************** */
+/*                                  DEFINES                                   */
+/* ************************************************************************** */
+
+
+/* ************************************************************************** */
+/*                                  STRUCTS                                   */
+/* ************************************************************************** */
 
 //This holds the values of watch point on the map
 typedef struct	s_point
@@ -65,5 +79,27 @@ typedef struct	s_mlx
 	float	c_factor;
 	t_img	img;
 }			t_mlx;
+
+/* ************************************************************************** */
+/*                                 FUNCTIONS                                  */
+/* ************************************************************************** */
+
+//main.c
+
+//parser.c
+int	get_dimensions(int *x, int *y, char *file);
+t_map *read_map(char *filemap);
+void	fill_mtrx(t_point *row, char *line, int y);
+void	set_point(t_point *point, char *str, int x, int y);
+
+//free_and_exit.c
+void	error_clean(int fd, char *str);
+void	free_args(char **numbers);
+
+//sanity_check.c
+int	sanity_check(char *name);
+
+//setup.c
+int	rgb_to_int(char *color);
 
 #endif
