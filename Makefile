@@ -43,6 +43,12 @@ MLX_PATH		= $(LIBS_PATH)/mlx
 
 ### Files Source
 FILES = main.c
+FILES += parser.c
+FILES += sanity_check.c
+FILES += setup.c
+FILES += free_and_exit.c
+FILES += display.c
+FILES += render.c
 
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))

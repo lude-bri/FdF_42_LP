@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:09:09 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/26 12:05:48 by luigi            ###   ########.fr       */
+/*   Updated: 2024/09/27 12:03:05 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	fill_mtrx(t_point *row, char *line, int y)
 	}
 	free(data);
 }
-
 
 void	set_point(t_point *point, char *str, int x, int y)
 {
