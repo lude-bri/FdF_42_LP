@@ -6,13 +6,14 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 10:33:34 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/27 12:00:30 by luigi            ###   ########.fr       */
+/*   Updated: 2024/09/27 12:43:20 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+#include <math.h>
 
-static void	isometric_view(t_point *p, float ang)
+void	isometric_view(t_point *p, float ang)
 {
 	p->x = (p->x - p->y) * cos(ang); //Rotate x and y coordinates
 	p->y = (p->x + p->y) * sin(ang) - p->z; //Adjust y coordinate and subtr z for depth
@@ -76,4 +77,23 @@ int	to_draw(t_mlx *win)
 	mlx_put_image_to_window(win->mlx_connect, win->mlx_win, win->img.mlx_img, 0, 0);
 	display(win);
 	return (0);
+}
+
+void	render(t_map *map)
+{
+	t_mlx	*win;
+
+	win = malloc(sizeof(t_mlx));
+	setup_window(win);
+	win->mlx_connect = mlx_init();
+	win->mlx_win = mlx_new_window(win->mlx_connect, WIDTH, HEIGHT, "FdF");
+	win->map = map;
+	win->img.mlx_img = mlx_new_image(win->mlx_connect, WIDTH, HEIGHT);
+	win->img.addr = mlx_get_data_addr(win->img.mlx_img, &win->img.bpp, 
+					&win->img.line_len, &win->img.endian);
+	mlx_loop_hook(win->mlx_connect, &to_draw, win);
+	mlx_key_hook(win->mlx_win, arrow_keys, win);
+	mlx_hook(win->mlx_win, KeyPress, KeyPressMask, check_event, win);
+	mlx_hook(win->mlx_win, 17, 0, to_close, win);
+	mlx_loop(win->mlx_connect);
 }

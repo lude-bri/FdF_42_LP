@@ -49,6 +49,7 @@ FILES += setup.c
 FILES += free_and_exit.c
 FILES += display.c
 FILES += render.c
+FILES += hooks.c
 
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))
@@ -71,7 +72,7 @@ DFLAGS		= -g
 INC			= -I $(INCLUDE_PATH)
 
 ifeq ($(shell uname), Linux)
-	MLXFLAGS		+= -lXext -lX11
+	MLXFLAGS		+= -lXext -lX11 -Ilmlx -lbsd -no-pie -lm
 else
 	MLXFLAGS		+= -L./inc/mlx -framework OpenGL -framework AppKit
 endif

@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:18:51 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/27 11:30:25 by luigi            ###   ########.fr       */
+/*   Updated: 2024/09/27 12:53:04 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,24 @@ void	display(t_mlx *win)
 				"Press d to see a neat rotation");
 	mlx_string_put(win->mlx_connect, win->mlx_win, 35, 160, -1,
 				"Press ESC or the X icon to exit");
+}
+
+void	display_map(t_map *map)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (map->h > y)
+	{
+		while (map->w > x)
+		{
+			ft_printf("%i ", map->coord[y][x].z);
+			x++;
+		}
+		ft_printf("\n");
+		x = 0;
+		y++;
+	}
 }

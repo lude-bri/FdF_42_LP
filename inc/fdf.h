@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 22:49:27 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/27 12:02:47 by luigi            ###   ########.fr       */
+/*   Updated: 2024/09/27 12:51:05 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <signal.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <math.h>
 # include <math.h>
 # include "../lib/mlx/mlx.h"
 # include "../lib/libft/libft_42/libft.h"
@@ -90,14 +91,17 @@ typedef struct	s_mlx
 //main.c
 
 //parser.c
-int	get_dimensions(int *x, int *y, char *file);
-t_map *read_map(char *filemap);
+int		get_dimensions(int *x, int *y, char *file);
+t_map	*read_map(char *filemap);
 void	fill_mtrx(t_point *row, char *line, int y);
 void	set_point(t_point *point, char *str, int x, int y);
 
 //free_and_exit.c
 void	error_clean(int fd, char *str);
 void	free_args(char **numbers);
+void	free_map(t_map *map);
+void	clean_and_exit(t_mlx *mlx);
+int		to_close(t_mlx *mlx);
 
 //sanity_check.c
 int	sanity_check(char *name);
@@ -110,11 +114,20 @@ int		ft_max(int number1, int number2);
 int		ft_mod(int n);
 
 //render.c
+void	isometric_view(t_point *p, float ang);
 void	bresenham(t_mlx *win, t_point p1, t_point p2);
 int		to_draw(t_mlx *win);
+void	render(t_map *map);
 
 //display.c
 void	pixel_put(t_img *img, int x, int y, int color);
 void	display(t_mlx *win);
+void	display_map(t_map *map);
+
+//hooks.c
+int		check_event(int Key, t_mlx * mlx);
+int		arrow_keys(int Key, t_mlx *mlx);
+int		more_keys(int Key, t_mlx *mlx);
+void	ft_reset(t_mlx *win);
 
 #endif
