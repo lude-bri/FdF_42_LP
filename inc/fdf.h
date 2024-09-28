@@ -118,6 +118,7 @@ void	isometric_view(t_point *p, float ang);
 void	bresenham(t_mlx *win, t_point p1, t_point p2);
 int		to_draw(t_mlx *win);
 void	render(t_map *map);
+void	render_bg(t_img *img, int color);
 
 //display.c
 void	pixel_put(t_img *img, int x, int y, int color);

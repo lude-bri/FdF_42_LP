@@ -60,6 +60,7 @@ int	to_draw(t_mlx *win)
 	int		y;
 	int		x;
 
+	render_bg(&win->img, 0x000000);
 	y = 0;
 	while (y < win->map->h)
 	{
@@ -96,4 +97,19 @@ void	render(t_map *map)
 	mlx_hook(win->mlx_win, KeyPress, KeyPressMask, check_event, win);
 	mlx_hook(win->mlx_win, 17, 0, to_close, win);
 	mlx_loop(win->mlx_connect);
+}
+
+void	render_bg(t_img *img, int color)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+			pixel_put(img, x++, y, color);
+		++y;
+	}
 }

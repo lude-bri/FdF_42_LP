@@ -17,7 +17,7 @@ void	setup_window(t_mlx *win)
 	win->mlx_connect = 0;
 	win->mlx_win = 0;
 	win->map = 0;
-	win->zoom = 10;
+	win->zoom = 50;
 	win->z_zoom = 0.25;
 	win->shift_x = 960;
 	win->shift_y = 240; 
