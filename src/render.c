@@ -47,7 +47,7 @@ void	bresenham(t_mlx *win, t_point p1, t_point p2)
 	x_step /= max;
 	y_step /= max;
 
-	while ((int)(p1.x - p2.x) || (int)(p1.y - p1.y))
+	while ((int)(p1.x - p2.x) || (int)(p1.y - p2.y))
 	{
 		pixel_put(&win->img, p1.x, p1.y, p1.color * win->c_factor);
 		p1.x += x_step;

@@ -93,7 +93,7 @@ void	set_point(t_point *point, char *str, int x, int y)
 	if (data[1])
 		point->color = rgb_to_int(data[1]);
 	else
-		point->color = 0xffffff;
+		point->color = 0x00ff00;
 	free_args(data);
 }
 
