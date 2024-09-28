@@ -60,7 +60,7 @@ int	more_keys(int Key, t_mlx *mlx)
 
 void	ft_reset(t_mlx *win)
 {
-	win->zoom = 10;
+	win->zoom = 30;
 	win->z_zoom = 0.25;
 	win->shift_x = 960;
 	win->shift_y = 240;
