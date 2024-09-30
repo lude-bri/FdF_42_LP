@@ -64,7 +64,7 @@ MLX_ARC		= $(MLX_PATH)/libmlx.a
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
 
-CC			= cc
+CC			= gcc
 
 CFLAGS		= -Wall -Wextra -Werror
 DFLAGS		= -g
@@ -74,7 +74,7 @@ INC			= -I $(INCLUDE_PATH)
 ifeq ($(shell uname), Linux)
 	MLXFLAGS		+= -lXext -lX11 -Ilmlx -lbsd -no-pie -lm
 else
-	MLXFLAGS		+= -L./inc/mlx -framework OpenGL -framework AppKit
+	MLXFLAGS		+= -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
 #==============================================================================#
