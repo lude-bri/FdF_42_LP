@@ -56,7 +56,7 @@ void	clean_and_exit(t_mlx *mlx)
 		free(mlx->mlx_connect);
 	}
 	if (mlx->map)
-		free(mlx->map);
+		free_map(mlx->map);
 	free(mlx);
 	exit(0);
 }
