@@ -67,7 +67,7 @@ MLX_ARC		= $(MLX_PATH)/libmlx.a
 CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
-DFLAGS		= -g
+DFLAGS		= -g -fsanitize=address
 
 INC			= -I $(INCLUDE_PATH)
 
