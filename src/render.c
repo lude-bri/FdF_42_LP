@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
-#include <math.h>
 
 void	isometric_view(t_point *p, float ang)
 {

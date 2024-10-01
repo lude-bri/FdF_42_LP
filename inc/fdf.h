@@ -27,7 +27,6 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
-# include <math.h>
 # include "../lib/mlx/mlx.h"
 # include "../lib/libft/libft_42/libft.h"
 
