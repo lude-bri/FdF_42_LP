@@ -86,6 +86,8 @@ void	set_point(t_point *point, char *str, int x, int y)
 {
 	char	**data;
 
+	if (!*str || *str == '\n')
+		return ;
 	data = ft_split(str, ',');
 	point->z = ft_atoi(data[0]);
 	point->x = x;
