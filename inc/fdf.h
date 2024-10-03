@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 22:49:27 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/27 12:51:05 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/03 12:58:59 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define PI 3.14159265358979323846
 
 /* ************************************************************************** */
 /*                                  STRUCTS                                   */
@@ -47,7 +48,9 @@ typedef struct	s_point
 	float	x;
 	float	y;
 	int		z;	//value found on (x,y)
-	int		color;	//value found after "," if it doesnt have value, its white.
+	int		*color;	//value found after "," if it doesnt have value, its white.
+	int		icolor;
+	int		fcolor;
 }			t_point;
 
 //This will hold all the points of the map
@@ -129,5 +132,16 @@ int		check_event(int Key, t_mlx * mlx);
 int		arrow_keys(int Key, t_mlx *mlx);
 int		more_keys(int Key, t_mlx *mlx);
 void	ft_reset(t_mlx *win);
+
+//color.c
+void	to_colorize(t_point *point, int number_colors);
+int		ft_min(int number1, int number2);
+unsigned char	get_color(t_point *point, float a, unsigned char (*f)(int));
+
+//rgb.c
+unsigned char	get_t_c(int trgb);
+unsigned char	get_r_c(int trgb);
+unsigned char	get_g_c(int trgb);
+unsigned char	get_b_c(int trgb);
 
 #endif

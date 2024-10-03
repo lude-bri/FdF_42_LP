@@ -38830,3 +38830,6 @@ ft_atoi (nprt=0x60200021fcf0 "\n") at libft_42/ft_atoi.c:32
 Undefined command: "ll".  Try "help".
 +p nrt
 No symbol "nrt" in current context.
++p nrt
+No symbol "nrt" in current context.
++q

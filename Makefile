@@ -50,6 +50,8 @@ FILES += free_and_exit.c
 FILES += display.c
 FILES += render.c
 FILES += hooks.c
+FILES += color.c
+FILES += rgb.c
 
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))

@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:09:09 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/27 12:03:05 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/03 13:05:51 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ void	set_point(t_point *point, char *str, int x, int y)
 	point->x = x;
 	point->y = y;
 	if (data[1])
-		point->color = rgb_to_int(data[1]);
+		*(point->color) = rgb_to_int(data[1]);
 	else
-		point->color = 0x00ff00;
+		to_colorize(point, 255);
+		// point->color = 0xffff00;
 	free_args(data);
 }
 
