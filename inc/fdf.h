@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 22:49:27 by luigi             #+#    #+#             */
-/*   Updated: 2024/10/03 12:58:59 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/03 13:51:12 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_point
 	float	x;
 	float	y;
 	int		z;	//value found on (x,y)
-	int		*color;	//value found after "," if it doesnt have value, its white.
+	int		color;	//value found after "," if it doesnt have value, its white.
 	int		icolor;
 	int		fcolor;
 }			t_point;

@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:55:25 by luigi             #+#    #+#             */
-/*   Updated: 2024/10/03 12:57:34 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/03 13:52:46 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	to_colorize(t_point *point, int number_colors)
 	unsigned char	rgb[3];
 
 	colors_groups(point);
-	point->color = malloc(sizeof(int) * number_colors);
 	f = 0;
 	i = -1;
 	while (++i < number_colors)
@@ -56,7 +55,7 @@ void	to_colorize(t_point *point, int number_colors)
 		rgb[1] = get_color(point, f, get_g_c);
 		rgb[2] = get_color(point, f, get_b_c);
 		f += (PI / 2) / (float)number_colors;
-		point->color[i] = ((int) rgb[0] << 16 | ((int)rgb[1]) << 8 | rgb[2]);
+		point->color = ((int) rgb[0] << 16 | ((int)rgb[1]) << 8 | rgb[2]);
 	}
 }
 

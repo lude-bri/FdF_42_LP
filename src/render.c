@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 10:33:34 by luigi             #+#    #+#             */
-/*   Updated: 2024/10/03 13:02:58 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/03 13:52:06 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	bresenham(t_mlx *win, t_point p1, t_point p2)
 
 	while ((int)(p1.x - p2.x) || (int)(p1.y - p2.y))
 	{
-		pixel_put(&win->img, p1.x, p1.y, *(p1.color) * win->c_factor);
+		pixel_put(&win->img, p1.x, p1.y, p1.color * win->c_factor);
 		p1.x += x_step;
 		p1.y += y_step;
 	}
