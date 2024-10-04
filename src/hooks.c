@@ -64,6 +64,6 @@ void	ft_reset(t_mlx *win)
 	win->z_zoom = 0.25;
 	win->shift_x = 960;
 	win->shift_y = 240;
-	win->view = 0.78;
+	win->view = 0.70;
 	win->c_factor = 1;
 }
