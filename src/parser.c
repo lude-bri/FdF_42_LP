@@ -95,7 +95,10 @@ void	set_point(t_point *point, char *str, int x, int y)
 	if (data[1])
 		point->color = rgb_to_int(data[1]);
 	else
+	{
+		range_z(point);
 		point->color = 0xffff00;
+	}
 	free_args(data);
 }
 

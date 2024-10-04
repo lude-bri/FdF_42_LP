@@ -12,6 +12,13 @@
 
 #include "../inc/fdf.h"
 
-int	find_max();
-
-int	find_min();
+void range_z(t_point *point)
+{
+	if (point->z > point->z_max)
+		point->z_max = point->z;
+	if (point->z < point->z_min)
+		point->z_min = point->z;
+}
+//no fundo quero percorrer o meu mapa e decidir o z_min e o z_max
+//em seguida eu vou aplicar cor especifica para o minimo e o maximo
+//e o que estiver entre esses numeros vai ser a variacao entre esses dois pontos

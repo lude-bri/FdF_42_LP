@@ -29,7 +29,7 @@ static void	colors_groups(t_point *point)
 	colors[4][1] = 0xf8ffae;
 	colors[5][0] = 0xC0C0AA;
 	colors[5][1] = 0x1CEFFF;
-	colors[6][0] = 0xDBE6F6 ;
+	colors[6][0] = 0xDBE6F6;
 	colors[6][1] = 0xC5796D;
 	colors[7][0] = 0x868F96;
 	colors[7][1] = 0x596164;

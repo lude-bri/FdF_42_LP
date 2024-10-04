@@ -146,4 +146,7 @@ unsigned char	get_r_c(int trgb);
 unsigned char	get_g_c(int trgb);
 unsigned char	get_b_c(int trgb);
 
+//range.c
+void	range_z(t_point *point);
+
 #endif

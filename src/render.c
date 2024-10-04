@@ -59,6 +59,7 @@ int	to_draw(t_mlx *win)
 	int		y;
 	int		x;
 
+	//posso fazer um set_color aqui
 	render_bg(&win->img, 0x000000);
 	y = 0;
 	while (y < win->map->h)

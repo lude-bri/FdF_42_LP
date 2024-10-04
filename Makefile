@@ -52,6 +52,7 @@ FILES += render.c
 FILES += hooks.c
 FILES += color.c
 FILES += rgb.c
+FILES += range.c
 
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))
