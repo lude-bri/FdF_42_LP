@@ -14,6 +14,28 @@
 
 static unsigned char interpolate_color(int icolor, int fcolor, float factor, unsigned char (*get_component)(int));
 
+bool	check_color_true(t_map *map)
+{
+
+	int y = 0;
+	int x;
+
+	// Loop through all points in the map
+	while (y < map->h)
+	{
+		x = 0;
+		while (x < map->w)
+		{
+			// Check if check_color is true for any point
+			if (map->coord[y][x].check_color == true)
+				return (true); // Exit if found
+			x++;
+		}
+		y++;
+	}
+	return (false);
+}
+
 void	apply_color_grading(t_map *map, t_z *z)
 {
 	int y = 0;
@@ -96,12 +118,4 @@ static unsigned char interpolate_color(int icolor, int fcolor, float factor, uns
 
 	// Linear interpolation between start and end based on factor (normalized_z)
 	return (unsigned char)(start + (end - start) * factor);
-}
-
-int	ft_min(int number1, int number2)
-{
-	if (number1 < number2)
-		return (number1);
-	else
-		return (number2);
 }

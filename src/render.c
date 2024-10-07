@@ -48,7 +48,10 @@ void	bresenham(t_mlx *win, t_point p1, t_point p2)
 
 	while ((int)(p1.x - p2.x) || (int)(p1.y - p2.y))
 	{
-		pixel_put(&win->img, p1.x, p1.y, p1.color + win->c_factor);
+		if (p1.check_color == true || p2.check_color == true)
+			pixel_put(&win->img, p1.x, p1.y, p1.color);
+		else
+			pixel_put(&win->img, p1.x, p1.y, p1.color + win->c_factor);
 		p1.x += x_step;
 		p1.y += y_step;
 	}

@@ -52,7 +52,7 @@ int	more_keys(int Key, t_mlx *mlx)
 	if (Key == XK_3)
 		mlx->view = 3;
 	if (Key == XK_c)
-		mlx->c_factor += 255;
+		mlx->c_factor += 510;
 	if (Key == XK_d)
 		mlx->view += 0.1;
 	return (0);

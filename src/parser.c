@@ -68,9 +68,9 @@ t_map	*read_map(char *filemap)
 		y++;
 		line = get_next_line(fd);
 	}
+	if (check_color_true(map) == false)
+		apply_color_grading(map, z);
 	free(line);
-	apply_color_grading(map, z);
-	//free(z);
 	close(fd);
 	return (map);
 }
@@ -154,9 +154,12 @@ void	set_point(t_point *point, char *str, int x, int y)
 	point->x = x;
 	point->y = y;
 	if (data[1])
+	{
 		point->color = rgb_to_int(data[1]);
+		point->check_color = true;
+	}
 	else
-		point->color = 0xffff00;
+		point->color = 0x00ff00;
 	free_args(data);
 }
 

@@ -18,7 +18,10 @@
 /* ************************************************************************** */
 
 # include <stdio.h>
+# include <stdbool.h>
 # include <stdlib.h>
+# include <string.h>
+# include <ctype.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <time.h>
@@ -50,7 +53,8 @@ typedef struct	s_point
 	int		z;	//value found on (x,y)
 	int		z_min;
 	int		z_max;
-	int		color;	//value found after "," if it doesnt have value, its white.
+	int		color; //color after ","
+	bool	check_color;
 	int		icolor;
 	int		fcolor;
 }			t_point;
@@ -148,6 +152,7 @@ int		ft_min(int number1, int number2);
 void	to_colorize(t_point *point, float normalized_z);
 unsigned char	get_color(t_point *point, float a, unsigned char (*f)(int));
 void	apply_color_grading(t_map *map, t_z *z);
+bool	check_color_true(t_map *map);
 
 //rgb.c
 unsigned char	get_t_c(int trgb);
