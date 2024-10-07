@@ -13,6 +13,9 @@
 #include "../inc/fdf.h"
 
 static int	count_words(char const *str, char c);
+static void to_range_z(t_z *z, char **data);
+static int	find_min(char **data);
+static int	find_max(char **data);
 
 int	get_dimensions(int *x, int *y, char	*file)
 {
@@ -41,14 +44,18 @@ t_map	*read_map(char *filemap)
 {
 	t_map	*map;
 	char	*line;
+	t_z		*z;
 	int		fd;
 	int		x;
 	int		y;
 
 	get_dimensions(&x, &y, filemap);
 	map = malloc(sizeof(t_map));
+	z = malloc(sizeof(t_z));
 	map->w = x;
 	map->h = y;
+	z->z_max = 0;
+	z->z_min = 0;
 	map->coord = malloc(map->h * sizeof(t_point *));
 	y = 0;
 	fd = open(filemap, O_RDONLY);
@@ -56,23 +63,28 @@ t_map	*read_map(char *filemap)
 	while (line)
 	{
 		map->coord[y] = malloc(map->w * sizeof(t_point));
-		fill_mtrx(map->coord[y], line, y);
+		fill_mtrx(map->coord[y], line, y, z);
 		free(line);
 		y++;
 		line = get_next_line(fd);
 	}
 	free(line);
+	apply_color_grading(map, z);
+	printf("this is the z_max: %i\n", z->z_max);
+	printf("this is the z_min %i\n", z->z_min);
+	//free(z);
 	close(fd);
 	return (map);
 }
 
-void	fill_mtrx(t_point *row, char *line, int y)
+void	fill_mtrx(t_point *row, char *line, int y, t_z *z)
 {
 	char	**data;
 	int		c;
 
 	c = 0;
 	data = ft_split(line, ' ');
+	to_range_z(z, data);
 	while (data[c])
 	{
 		set_point(&row[c], data[c], c, y);
@@ -80,6 +92,58 @@ void	fill_mtrx(t_point *row, char *line, int y)
 		c++;
 	}
 	free(data);
+}
+
+static void to_range_z(t_z *z, char **data)
+{
+	int		max;
+	int		min;
+
+	max = find_max(data);
+	min = find_min(data);
+	if (z->z_max < max)
+		z->z_max = max;
+	if (z->z_min > min)
+		z->z_min = min;
+}
+
+static int	find_max(char **data)
+{
+	int		i;
+	int		max;
+	int		current_value;
+
+	if (!data || !*data[0])
+		return (0);
+	i = 0;
+	max = ft_atoi(data[0]);  // Initialize max with the first value
+	while (data[i])
+	{
+		current_value = ft_atoi(data[i]);  // Convert current string to integer
+		if (current_value > max)  // Check if current value is greater than max
+			max = current_value;  // Update max if needed
+		i++;
+	}
+	return (max);  // Return the maximum value found
+}
+
+
+static int	find_min(char **data)
+{
+	int		i;
+	int		min;
+	int		current_value;
+
+	i = 0;
+	min = ft_atoi(data[0]);  // Initialize min with the first value
+	while (data[i])
+	{
+		current_value = ft_atoi(data[i]);  // Convert current string to integer
+		if (current_value < min)  // Check if current value is less than min
+			min = current_value;  // Update min if needed
+		i++;
+	}
+	return (min);  // Return the minimum value found
 }
 
 void	set_point(t_point *point, char *str, int x, int y)
@@ -95,10 +159,7 @@ void	set_point(t_point *point, char *str, int x, int y)
 	if (data[1])
 		point->color = rgb_to_int(data[1]);
 	else
-	{
-		range_z(point);
 		point->color = 0xffff00;
-	}
 	free_args(data);
 }
 

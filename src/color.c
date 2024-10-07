@@ -12,6 +12,29 @@
 
 #include "../inc/fdf.h"
 
+void	apply_color_grading(t_map *map, t_z *z)
+{
+	int y = 0;
+	int x;
+	int range;
+
+	range = ft_abs((z->z_max - z->z_min));
+	
+	if (range == 0)
+		return ;
+	while (y < map->h)
+	{
+		x = 0;
+		while (x < map->w)
+		{
+			to_colorize(&map->coord[y][x], range);
+			x++;
+		}
+		y++;
+	}
+	free(z);
+}
+
 static void	colors_groups(t_point *point)
 {
 	int		colors[9][2];

@@ -88,6 +88,12 @@ typedef struct	s_mlx
 	t_img	img; //our image
 }			t_mlx;
 
+typedef struct  s_z
+{
+	int		z_min;
+	int		z_max;
+}			t_z;
+
 /* ************************************************************************** */
 /*                                 FUNCTIONS                                  */
 /* ************************************************************************** */
@@ -97,7 +103,7 @@ typedef struct	s_mlx
 //parser.c
 int		get_dimensions(int *x, int *y, char *file);
 t_map	*read_map(char *filemap);
-void	fill_mtrx(t_point *row, char *line, int y);
+void	fill_mtrx(t_point *row, char *line, int y, t_z *z);
 void	set_point(t_point *point, char *str, int x, int y);
 
 //free_and_exit.c
