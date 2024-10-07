@@ -85,6 +85,7 @@ typedef struct	s_mlx
 	int		shift_y;
 	float	view;
 	float	c_factor;
+	int		c_index;
 	t_img	img; //our image
 }			t_mlx;
 
@@ -142,9 +143,11 @@ int		more_keys(int Key, t_mlx *mlx);
 void	ft_reset(t_mlx *win);
 
 //color.c
-void	to_colorize(t_point *point, int number_colors);
+//void	to_colorize(t_point *point, int number_colors);
 int		ft_min(int number1, int number2);
+void	to_colorize(t_point *point, float normalized_z);
 unsigned char	get_color(t_point *point, float a, unsigned char (*f)(int));
+void	apply_color_grading(t_map *map, t_z *z);
 
 //rgb.c
 unsigned char	get_t_c(int trgb);

@@ -12,22 +12,32 @@
 
 #include "../inc/fdf.h"
 
+static unsigned char interpolate_color(int icolor, int fcolor, float factor, unsigned char (*get_component)(int));
+
 void	apply_color_grading(t_map *map, t_z *z)
 {
 	int y = 0;
 	int x;
 	int range;
 
-	range = ft_abs((z->z_max - z->z_min));
-	
+	// Calculate the Z range
+	range = ft_abs(z->z_max - z->z_min);
+
+	// If there's no range, the map is flat, so no need to colorize
 	if (range == 0)
-		return ;
+		return;
+
+	// Iterate through all points in the map
 	while (y < map->h)
 	{
 		x = 0;
 		while (x < map->w)
 		{
-			to_colorize(&map->coord[y][x], range);
+			// Normalize the Z value of the point (0 to 1)
+			float normalized_z = (float)(map->coord[y][x].z - z->z_min) / range;
+			
+			// Pass the normalized Z value to `to_colorize`
+			to_colorize(&map->coord[y][x], normalized_z);
 			x++;
 		}
 		y++;
@@ -38,7 +48,7 @@ void	apply_color_grading(t_map *map, t_z *z)
 static void	colors_groups(t_point *point)
 {
 	int		colors[9][2];
-	int		i;
+	int		i = 1;
 
 	colors[0][0] = 0x20002C;
 	colors[0][1] = 0xCBB4D4;
@@ -58,39 +68,34 @@ static void	colors_groups(t_point *point)
 	colors[7][1] = 0x596164;
 	colors[8][0] = 0x30E8BF;
 	colors[8][1] = 0xFF8235;
-	i = rand() % 9;
+	//i = rand() % 9;
 	point->icolor = colors[i][0];
 	point->fcolor = colors[i][1];
 }
 
-void	to_colorize(t_point *point, int number_colors)
+void	to_colorize(t_point *point, float normalized_z)
 {
-	int				i;
-	float			f;
-	unsigned char	rgb[3];
+	unsigned char rgb[3];
 
+	// Ensure colors_groups assigns the base colors
 	colors_groups(point);
-	f = 0;
-	i = -1;
-	while (++i < number_colors)
-	{
-		rgb[0] = get_color(point, f, get_r_c);
-		rgb[1] = get_color(point, f, get_g_c);
-		rgb[2] = get_color(point, f, get_b_c);
-		f += (PI / 2) / (float)number_colors;
-		point->color = ((int) rgb[0] << 16 | ((int)rgb[1]) << 8 | rgb[2]);
-	}
+
+	// Interpolate between the base colors based on normalized Z value (0 to 1)
+	rgb[0] = interpolate_color(point->icolor, point->fcolor, normalized_z, get_r_c);  // Red channel
+	rgb[1] = interpolate_color(point->icolor, point->fcolor, normalized_z, get_g_c);  // Green channel
+	rgb[2] = interpolate_color(point->icolor, point->fcolor, normalized_z, get_b_c);  // Blue channel
+
+	// Combine RGB components into a single color
+	point->color = ((int)rgb[0] << 16 | (int)rgb[1] << 8 | rgb[2]);
 }
 
-unsigned char	get_color(t_point *point, float a, unsigned char (*f)(int))
+static unsigned char interpolate_color(int icolor, int fcolor, float factor, unsigned char (*get_component)(int))
 {
-	unsigned char	color;
+	unsigned char start = get_component(icolor);  // Starting color component
+	unsigned char end = get_component(fcolor);    // Ending color component
 
-	color = ft_min(f(point->icolor), f(point->fcolor))
-		+ ((unsigned char)ft_abs(f(point->icolor) - f(point->fcolor)))
-		* ((f(point->icolor) < f(point->fcolor)) * (sin(a))
-			+ ((f(point->icolor) >= f(point->fcolor)) * cos(a)));
-	return (color);
+	// Linear interpolation between start and end based on factor (normalized_z)
+	return (unsigned char)(start + (end - start) * factor);
 }
 
 int	ft_min(int number1, int number2)

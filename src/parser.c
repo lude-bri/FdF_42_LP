@@ -70,8 +70,6 @@ t_map	*read_map(char *filemap)
 	}
 	free(line);
 	apply_color_grading(map, z);
-	printf("this is the z_max: %i\n", z->z_max);
-	printf("this is the z_min %i\n", z->z_min);
 	//free(z);
 	close(fd);
 	return (map);
@@ -126,7 +124,6 @@ static int	find_max(char **data)
 	}
 	return (max);  // Return the maximum value found
 }
-
 
 static int	find_min(char **data)
 {
