@@ -70,6 +70,8 @@ t_map	*read_map(char *filemap)
 	}
 	if (check_color_true(map) == false)
 		apply_color_grading(map, z);
+	else
+		free(z);
 	free(line);
 	close(fd);
 	return (map);

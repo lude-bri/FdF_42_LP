@@ -38,27 +38,21 @@ bool	check_color_true(t_map *map)
 
 void	apply_color_grading(t_map *map, t_z *z)
 {
-	int y = 0;
-	int x;
-	int range;
+	int		y;
+	int		x;
+	int		range;
+	float	normalized_z;
 
-	// Calculate the Z range
 	range = ft_abs(z->z_max - z->z_min);
-
-	// If there's no range, the map is flat, so no need to colorize
 	if (range == 0)
 		return;
-
-	// Iterate through all points in the map
+	y = 0;
 	while (y < map->h)
 	{
 		x = 0;
 		while (x < map->w)
 		{
-			// Normalize the Z value of the point (0 to 1)
-			float normalized_z = (float)(map->coord[y][x].z - z->z_min) / range;
-			
-			// Pass the normalized Z value to `to_colorize`
+			normalized_z = (float)(map->coord[y][x].z - z->z_min) / range;
 			to_colorize(&map->coord[y][x], normalized_z);
 			x++;
 		}
@@ -90,7 +84,6 @@ static void	colors_groups(t_point *point)
 	colors[7][1] = 0x596164;
 	colors[8][0] = 0x30E8BF;
 	colors[8][1] = 0xFF8235;
-	//i = rand() % 9;
 	point->icolor = colors[i][0];
 	point->fcolor = colors[i][1];
 }
