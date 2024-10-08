@@ -159,7 +159,10 @@ void	set_point(t_point *point, char *str, int x, int y)
 		point->check_color = true;
 	}
 	else
+	{
 		point->color = 0x00ff00;
+		point->check_color = false;
+	}
 	free_args(data);
 }
 

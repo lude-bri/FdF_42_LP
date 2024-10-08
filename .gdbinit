@@ -12,5 +12,5 @@ end
 
 fs cmd
 break read_map
-run maps/test_maps/mars.fdf
+run 42.fdf
 main

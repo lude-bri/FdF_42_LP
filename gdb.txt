@@ -39364,3 +39364,363 @@ No symbol "row" in current context.
   icolor = -1094795586,
   fcolor = -1094795586
 }
++set print pretty on
++set print array on
++define read_map
++fs cmd
+Focus set to cmd window.
++break read_map
+Breakpoint 1 at 0x4028f8: file src/parser.c, line 44.
++run maps/test_maps/mars.fdf
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, read_map (filemap=0x7fffffffd124 "maps/test_maps/mars.fdf") at src/parser.c:44
++main
+List of maintenance subcommands:
+
+maintenance agent -- Translate an expression into remote agent bytecode for tracing.
+maintenance agent-eval -- Translate an expression into remote agent bytecode for evaluation.
+maintenance agent-printf -- Translate an expression into remote agent bytecode for evaluation and display the bytecodes.
+maintenance btrace -- Branch tracing maintenance commands.
+maintenance check -- Commands for checking internal gdb state.
+maintenance check-psymtabs -- Check consistency of currently expanded psymtabs versus symtabs.
+maintenance check-symtabs -- Check consistency of currently expanded symtabs.
+maintenance cplus, maintenance cp -- C++ maintenance commands.
+maintenance demangler-warning -- Give GDB a demangler warning.
+maintenance deprecate -- Deprecate a command (for testing purposes).
+maintenance dump-me -- Get fatal error; make debugger dump its core.
+maintenance expand-symtabs -- Expand symbol tables.
+maintenance flush -- Maintenance command for flushing GDB internal caches.
+maintenance info, maintenance i -- Commands for showing internal info about the program being debugged.
+maintenance internal-error -- Give GDB an internal error.
+maintenance internal-warning -- Give GDB an internal warning.
+maintenance packet -- Send an arbitrary packet to a remote target.
+maintenance print -- Maintenance command for printing GDB internal state.
+maintenance selftest -- Run gdb's unit tests.
+maintenance set -- Set GDB internal variables used by the GDB maintainer.
+maintenance show -- Show GDB internal variables used by the GDB maintainer.
+maintenance space -- Set the display of space usage.
+maintenance test-options -- Generic command for testing the options infrastructure.
+maintenance time -- Set the display of time usage.
+maintenance translate-address -- Translate a section name and address to a symbol.
+maintenance undeprecate -- Undeprecate a command (for testing purposes).
+maintenance with -- Like "with", but works with "maintenance set" variables.
+
+Type "help maintenance" followed by maintenance subcommand name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Type "apropos -v word" for full documentation of commands related to "word".
+Command name abbreviations are allowed if unambiguous.
++q
++set print pretty on
++set print array on
++define read_map
++fs cmd
+Focus set to cmd window.
++break read_map
+Breakpoint 1 at 0x4028f8: file src/parser.c, line 44.
++run 42.fdf
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, read_map (filemap=0x7fffffffd136 "42.fdf") at src/parser.c:44
++main
+List of maintenance subcommands:
+
+maintenance agent -- Translate an expression into remote agent bytecode for tracing.
+maintenance agent-eval -- Translate an expression into remote agent bytecode for evaluation.
+maintenance agent-printf -- Translate an expression into remote agent bytecode for evaluation and display the bytecodes.
+maintenance btrace -- Branch tracing maintenance commands.
+maintenance check -- Commands for checking internal gdb state.
+maintenance check-psymtabs -- Check consistency of currently expanded psymtabs versus symtabs.
+maintenance check-symtabs -- Check consistency of currently expanded symtabs.
+maintenance cplus, maintenance cp -- C++ maintenance commands.
+maintenance demangler-warning -- Give GDB a demangler warning.
+maintenance deprecate -- Deprecate a command (for testing purposes).
+maintenance dump-me -- Get fatal error; make debugger dump its core.
+maintenance expand-symtabs -- Expand symbol tables.
+maintenance flush -- Maintenance command for flushing GDB internal caches.
+maintenance info, 
+   maintenance i -- Commands for showing internal info about the program being debugged.
+maintenance internal-error -- Give GDB an internal error.
+maintenance internal-warning -- Give GDB an internal warning.
+maintenance packet -- Send an arbitrary packet to a remote target.
+maintenance print -- Maintenance command for printing GDB internal state.
+maintenance selftest -- Run gdb's unit tests.
+maintenance set -- Set GDB internal variables used by the GDB maintainer.
+maintenance show -- Show GDB internal variables used by the GDB maintainer.
+maintenance space -- Set the display of space usage.
+maintenance test-options -- Generic command for testing the options infrastructure.
+maintenance time -- Set the display of time usage.
+maintenance translate-address -- Translate a section name and address to a symbol.
+maintenance undeprecate -- Undeprecate a command (for testing purposes).
+maintenance with -- Like "with", but works with "maintenance set" variables.
+
+Type "help maintenance" followed by maintenance subcommand name for full documentation.
+Type "apropos word" to search for commands related to "word".
+Type "apropos -v word" for full documentation of commands related to "word".
+Command name abbreviations are allowed if unambiguous.
++n
++start
+Temporary breakpoint 2 at 0x4025d9: file src/main.c, line 20.
+Starting program: /home/lude-bri/CC/Rank2/fdf_test/fdf 42.fdf
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Temporary breakpoint 2, main (ac=2, av=0x7fffffffc9b8) at src/main.c:20
++n
++n
++n
++s
+
+Breakpoint 1, read_map (filemap=0x7fffffffd136 "42.fdf") at src/parser.c:44
++n
++n
++n
++n
++m
+Ambiguous command "m": macro, maintenance, make, mem, memory-tag, monitor, mt.
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++start
+Temporary breakpoint 3 at 0x4025d9: file src/main.c, line 20.
+Starting program: /home/lude-bri/CC/Rank2/fdf_test/fdf 42.fdf
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Temporary breakpoint 3, main (ac=2, av=0x7fffffffc9b8) at src/main.c:20
++n
++n
++n
++s
+
+Breakpoint 1, read_map (filemap=0x7fffffffd136 "42.fdf") at src/parser.c:44
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++start
+Temporary breakpoint 4 at 0x4025d9: file src/main.c, line 20.
+Starting program: /home/lude-bri/CC/Rank2/fdf_test/fdf 42.fdf
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Temporary breakpoint 4, main (ac=2, av=0x7fffffffc9b8) at src/main.c:20
++b check_color_grading
+Function "check_color_grading" not defined.
++n
++n
++n
++s
+
+Breakpoint 1, read_map (filemap=0x7fffffffd136 "42.fdf") at src/parser.c:44
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++n
++u
++s
+check_color_true (map=0x602000000050) at src/color.c:20
++n
++disp y
+1: y = 0
++disp x
+2: x = 0
++disp map->h
+3: map->h = 11
++disp map->w
+4: map->w = 19
++n
+1: y = 0
+2: x = 0
+3: map->h = 11
+4: map->w = 19
++n
+1: y = 0
+2: x = 0
+3: map->h = 11
+4: map->w = 19
++n
+1: y = 0
+2: x = 0
+3: map->h = 11
+4: map->w = 19
++p map->coord[y][x].check_color
+$1 = 190
++n
+1: y = 0
+2: x = 0
+3: map->h = 11
+4: map->w = 19
++n
+1: y = 0
+2: x = 0
+3: map->h = 11
+4: map->w = 19
++n
+read_map (filemap=0x7fffffffd136 "42.fdf") at src/parser.c:71
++n
