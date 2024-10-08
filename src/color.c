@@ -12,23 +12,22 @@
 
 #include "../inc/fdf.h"
 
-static unsigned char interpolate_color(int icolor, int fcolor, float factor, unsigned char (*get_component)(int));
+static unsigned char	interpolate_color(int icolor, int fcolor, float factor,
+							unsigned char (*get_component)(int));
 
 bool	check_color_true(t_map *map)
 {
+	int	y;
+	int	x;
 
-	int y = 0;
-	int x;
-
-	// Loop through all points in the map
+	y = 0;
 	while (y < map->h)
 	{
 		x = 0;
 		while (x < map->w)
 		{
-			// Check if check_color is true for any point
 			if (map->coord[y][x].check_color == true)
-				return (true); // Exit if found
+				return (true);
 			x++;
 		}
 		y++;
@@ -45,7 +44,7 @@ void	apply_color_grading(t_map *map, t_z *z)
 
 	range = ft_abs(z->z_max - z->z_min);
 	if (range == 0)
-		return;
+		return ;
 	y = 0;
 	while (y < map->h)
 	{
@@ -64,8 +63,9 @@ void	apply_color_grading(t_map *map, t_z *z)
 static void	colors_groups(t_point *point)
 {
 	int		colors[9][2];
-	int		i = 1;
+	int		i;
 
+	i = 1;
 	colors[0][0] = 0x20002C;
 	colors[0][1] = 0xCBB4D4;
 	colors[1][0] = 0x34E89E;
@@ -90,25 +90,25 @@ static void	colors_groups(t_point *point)
 
 void	to_colorize(t_point *point, float normalized_z)
 {
-	unsigned char rgb[3];
+	unsigned char	rgb[3];
 
-	// Ensure colors_groups assigns the base colors
 	colors_groups(point);
-
-	// Interpolate between the base colors based on normalized Z value (0 to 1)
-	rgb[0] = interpolate_color(point->icolor, point->fcolor, normalized_z, get_r_c);  // Red channel
-	rgb[1] = interpolate_color(point->icolor, point->fcolor, normalized_z, get_g_c);  // Green channel
-	rgb[2] = interpolate_color(point->icolor, point->fcolor, normalized_z, get_b_c);  // Blue channel
-
-	// Combine RGB components into a single color
+	rgb[0] = interpolate_color(point->icolor, point->fcolor,
+			normalized_z, get_r_c);
+	rgb[1] = interpolate_color(point->icolor, point->fcolor,
+			normalized_z, get_g_c);
+	rgb[2] = interpolate_color(point->icolor, point->fcolor,
+			normalized_z, get_b_c);
 	point->color = ((int)rgb[0] << 16 | (int)rgb[1] << 8 | rgb[2]);
 }
 
-static unsigned char interpolate_color(int icolor, int fcolor, float factor, unsigned char (*get_component)(int))
+static unsigned char	interpolate_color(int icolor, int fcolor, float factor,
+								unsigned char (*get_component)(int))
 {
-	unsigned char start = get_component(icolor);  // Starting color component
-	unsigned char end = get_component(fcolor);    // Ending color component
+	unsigned char	start;
+	unsigned char	end;
 
-	// Linear interpolation between start and end based on factor (normalized_z)
-	return (unsigned char)(start + (end - start) * factor);
+	start = get_component(icolor);
+	end = get_component(fcolor);
+	return ((unsigned char)(start + (end - start) * factor));
 }

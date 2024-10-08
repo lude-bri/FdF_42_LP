@@ -33,12 +33,8 @@ int	arrow_keys(int Key, t_mlx *mlx)
 		mlx->zoom += 1;
 	if (Key == XK_minus && mlx->zoom >= 2)
 		mlx->zoom -= 1;
-	if (Key == XK_z)
-		mlx->zoom += 0.25;
-	if (Key == XK_x)
-		mlx->zoom -= 0.25;
 	if (Key == XK_r)
-		ft_reset(mlx);
+		reset_map(mlx);
 	more_keys(Key, mlx);
 	return (0);
 }
@@ -58,7 +54,7 @@ int	more_keys(int Key, t_mlx *mlx)
 	return (0);
 }
 
-void	ft_reset(t_mlx *win)
+void	reset_map(t_mlx *win)
 {
 	win->zoom = 30;
 	win->z_zoom = 0.25;

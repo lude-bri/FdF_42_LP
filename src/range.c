@@ -12,13 +12,53 @@
 
 #include "../inc/fdf.h"
 
-void range_z(t_point *point)
+void	to_range_z(t_z *z, char **data)
 {
-	if (point->z > point->z_max)
-		point->z_max = point->z;
-	if (point->z < point->z_min)
-		point->z_min = point->z;
+	int		max;
+	int		min;
+
+	max = find_max(data);
+	min = find_min(data);
+	if (z->z_max < max)
+		z->z_max = max;
+	if (z->z_min > min)
+		z->z_min = min;
 }
-//no fundo quero percorrer o meu mapa e decidir o z_min e o z_max
-//em seguida eu vou aplicar cor especifica para o minimo e o maximo
-//e o que estiver entre esses numeros vai ser a variacao entre esses dois pontos
+
+int	find_max(char **data)
+{
+	int		i;
+	int		max;
+	int		current_value;
+
+	if (!data || !*data[0])
+		return (0);
+	i = 0;
+	max = ft_atoi(data[0]);
+	while (data[i])
+	{
+		current_value = ft_atoi(data[i]);
+		if (current_value > max)
+			max = current_value;
+		i++;
+	}
+	return (max);
+}
+
+int	find_min(char **data)
+{
+	int		i;
+	int		min;
+	int		current_value;
+
+	i = 0;
+	min = ft_atoi(data[0]);
+	while (data[i])
+	{
+		current_value = ft_atoi(data[i]);
+		if (current_value < min)
+			min = current_value;
+		i++;
+	}
+	return (min);
+}

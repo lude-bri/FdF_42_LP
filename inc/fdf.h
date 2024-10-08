@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 22:49:27 by luigi             #+#    #+#             */
-/*   Updated: 2024/10/03 13:58:22 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/08 19:58:09 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,11 @@ typedef struct  s_z
 /* ************************************************************************** */
 
 //main.c
+void	fdf(t_map *map);
 
 //parser.c
 int		get_dimensions(int *x, int *y, char *file);
-t_map	*read_map(char *filemap);
+t_map	*read_map(char *filemap, int fd);
 void	fill_mtrx(t_point *row, char *line, int y, t_z *z);
 void	set_point(t_point *point, char *str, int x, int y);
 
@@ -119,40 +120,35 @@ void	clean_and_exit(t_mlx *mlx);
 int		to_close(t_mlx *mlx);
 
 //sanity_check.c
-int	sanity_check(char *name);
+int		sanity_check(char *name);
 
 //setup.c
 void	setup_window(t_mlx *win);
-int		rgb_to_int(char *color);
+void	setup_colors(t_map *map, t_z *z);
 void	init_zoom(t_mlx *win, t_point *p1, t_point *p2);
-int		ft_max(int number1, int number2);
-int		ft_mod(int n);
+void	init_map(t_map *map, int x, int y, t_z *z);
 
 //render.c
 void	isometric_view(t_point *p, float ang);
 void	bresenham(t_mlx *win, t_point p1, t_point p2);
 int		to_draw(t_mlx *win);
-void	render(t_map *map);
 void	render_bg(t_img *img, int color);
 
 //display.c
 void	pixel_put(t_img *img, int x, int y, int color);
-void	display(t_mlx *win);
-void	display_map(t_map *map);
+void	pixel_draw(t_mlx *win, t_point p1, t_point p2);
+void	display_menu(t_mlx *win);
 
 //hooks.c
 int		check_event(int Key, t_mlx * mlx);
 int		arrow_keys(int Key, t_mlx *mlx);
 int		more_keys(int Key, t_mlx *mlx);
-void	ft_reset(t_mlx *win);
+void	reset_map(t_mlx *win);
 
 //color.c
-//void	to_colorize(t_point *point, int number_colors);
-int		ft_min(int number1, int number2);
-void	to_colorize(t_point *point, float normalized_z);
-unsigned char	get_color(t_point *point, float a, unsigned char (*f)(int));
-void	apply_color_grading(t_map *map, t_z *z);
 bool	check_color_true(t_map *map);
+void	apply_color_grading(t_map *map, t_z *z);
+void	to_colorize(t_point *point, float normalized_z);
 
 //rgb.c
 unsigned char	get_t_c(int trgb);
@@ -161,6 +157,13 @@ unsigned char	get_g_c(int trgb);
 unsigned char	get_b_c(int trgb);
 
 //range.c
-void	range_z(t_point *point);
+void	to_range_z(t_z *z, char **data);
+int		find_max(char **data);
+int		find_min(char **data);
+
+//utils.c
+int		ft_max(int number1, int number2);
+int		ft_mod(int n);
+int		rgb_to_int(char *color);
 
 #endif

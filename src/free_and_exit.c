@@ -64,5 +64,5 @@ void	clean_and_exit(t_mlx *mlx)
 int	to_close(t_mlx *mlx)
 {
 	clean_and_exit(mlx);
-	return(0);
+	return (0);
 }
