@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:09:09 by luigi             #+#    #+#             */
-/*   Updated: 2024/10/08 19:58:57 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/09 20:18:33 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_dimensions(int *x, int *y, char	*file)
 		error_clean(fd, "Error: Not a file or not enough permissions\n");
 	line = get_next_line(fd);
 	if (!line)
-		error_clean(fd, "Error: No info on file\n");
+		error_clean(fd, "Error: Empty file\n");
 	*x = count_words(line, ' ');
 	while (line)
 	{
@@ -74,6 +74,16 @@ void	fill_mtrx(t_point *row, char *line, int y, t_z *z)
 	c = 0;
 	data = ft_split(line, ' ');
 	to_range_z(z, data);
+	while (line[c])
+	{
+		if (line[c] == ' ' && line[c + 1] == '\n')
+		{
+			ft_printf("Error: Space followed by a new line\n");
+			exit (0);
+		}
+		c++;
+	}
+	c = 0;
 	while (data[c])
 	{
 		set_point(&row[c], data[c], c, y);

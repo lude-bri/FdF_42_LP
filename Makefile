@@ -54,6 +54,7 @@ FILES += color.c
 FILES += rgb.c
 FILES += range.c
 FILES += utils.c
+FILES += init.c
 
 ### Paths
 SRC		= $(addprefix $(SRC_PATH)/, $(FILES))

@@ -44,7 +44,10 @@ void	apply_color_grading(t_map *map, t_z *z)
 
 	range = ft_abs(z->z_max - z->z_min);
 	if (range == 0)
+	{
+		free(z);
 		return ;
+	}
 	y = 0;
 	while (y < map->h)
 	{

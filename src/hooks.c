@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:13:37 by luigi             #+#    #+#             */
-/*   Updated: 2024/09/27 12:36:35 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/09 19:31:54 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	more_keys(int Key, t_mlx *mlx)
 
 void	reset_map(t_mlx *win)
 {
-	win->zoom = 30;
+	win->zoom = 10;
 	win->z_zoom = 0.25;
 	win->shift_x = 960;
 	win->shift_y = 240;

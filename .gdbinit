@@ -10,7 +10,12 @@ define read_map
 	disp line
 end
 
+define fill_mtrx
+	disp data[c]
+	disp c
+end
+
 fs cmd
 break read_map
-run 42.fdf
+run 4x4_2.fdf
 main

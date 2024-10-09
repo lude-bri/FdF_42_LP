@@ -6,7 +6,7 @@
 /*   By: luigi <luigi@student.42porto.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 22:49:27 by luigi             #+#    #+#             */
-/*   Updated: 2024/10/08 19:58:09 by luigi            ###   ########.fr       */
+/*   Updated: 2024/10/09 19:27:38 by luigi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,9 @@ int		find_min(char **data);
 int		ft_max(int number1, int number2);
 int		ft_mod(int n);
 int		rgb_to_int(char *color);
+
+//init.c
+void	init_win(t_mlx *win, t_map *map);
+void	init_hook(t_mlx *win);
 
 #endif
