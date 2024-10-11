@@ -12,6 +12,8 @@
 
 #include "../inc/fdf.h"
 
+//the main function verify if we're dealing with a '.fdf' file, than parse the
+//file and execute the fdf function. Otherwhise, handle erros.
 int	main(int ac, char **av)
 {
 	t_map	*map;
@@ -37,6 +39,8 @@ int	main(int ac, char **av)
 	return (0);
 }
 
+//the fdf function setup the window to start the program, with
+//init_win and init_hook
 void	fdf(t_map *map)
 {
 	t_mlx	*win;
