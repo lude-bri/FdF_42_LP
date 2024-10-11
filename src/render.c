@@ -12,12 +12,16 @@
 
 #include "../inc/fdf.h"
 
+//this function applies the isometric view, changing the position in x and y and
+//subtracting z to create the isometric projection.
 void	isometric_view(t_point *p, float ang)
 {
 	p->x = (p->x - p->y) * cos(ang);
 	p->y = (p->x + p->y) * sin(ang) - p->z;
 }
 
+//this function applies the bresenham line algorithm to draw line between two
+//points in a coordenate
 void	bresenham(t_mlx *win, t_point p1, t_point p2)
 {
 	float	x_step;
@@ -47,6 +51,8 @@ void	bresenham(t_mlx *win, t_point p1, t_point p2)
 	}
 }
 
+//this function draw a line between two points in a coordenate applying
+//the bresenham line algorithm
 int	to_draw(t_mlx *win)
 {
 	int		y;
@@ -75,6 +81,7 @@ int	to_draw(t_mlx *win)
 	return (0);
 }
 
+//this function ensure that the background will always be black
 void	render_bg(t_img *img, int color)
 {
 	int	y;

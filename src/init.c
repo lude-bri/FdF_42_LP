@@ -12,6 +12,8 @@
 
 #include "../inc/fdf.h"
 
+//this function initialize the window, connecting with the server, openning a window
+//and putting the image in there 
 void	init_win(t_mlx *win, t_map *map)
 {
 	win->mlx_connect = mlx_init();
@@ -22,6 +24,8 @@ void	init_win(t_mlx *win, t_map *map)
 			&win->img.line_len, &win->img.endian);
 }
 
+//this function initialize the hook functionality and keep the window open with
+//the loop
 void	init_hook(t_mlx *win)
 {
 	mlx_loop_hook(win->mlx_connect, &to_draw, win);
@@ -31,6 +35,7 @@ void	init_hook(t_mlx *win)
 	mlx_loop(win->mlx_connect);
 }
 
+//this function initialize the zoom
 void	init_zoom(t_mlx *win, t_point *p1, t_point *p2)
 {
 	p1->x *= win->zoom;
@@ -43,6 +48,7 @@ void	init_zoom(t_mlx *win, t_point *p1, t_point *p2)
 	p2->z *= win->z_zoom;
 }
 
+//this function initialize the map with the points of the coordenates
 void	init_map(t_map *map, int x, int y, t_z *z)
 {
 	map->w = x;

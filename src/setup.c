@@ -12,6 +12,8 @@
 
 #include "../inc/fdf.h"
 
+//this function setup the window for the start point of those variables
+//in the beggining of the execution
 void	setup_window(t_mlx *win)
 {
 	win->mlx_connect = 0;
@@ -25,6 +27,8 @@ void	setup_window(t_mlx *win)
 	win->c_factor = 1;
 }
 
+//this function verifies if there are colors announced in the map (ex: 0,0xFFFFFF)
+//if this is the case, free (z), otherwhise, apply my colors.
 void	setup_colors(t_map *map, t_z *z)
 {
 	if (check_color_true(map) == false)

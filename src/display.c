@@ -12,6 +12,7 @@
 
 #include "../inc/fdf.h"
 
+//this function paints the line, pixel by pixel
 void	pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
@@ -23,6 +24,7 @@ void	pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
+//this function decides if paints with my colors or the colors already announced
 void	pixel_draw(t_mlx *win, t_point p1, t_point p2)
 {
 	if (p1.check_color == true || p2.check_color == true)
@@ -31,6 +33,7 @@ void	pixel_draw(t_mlx *win, t_point p1, t_point p2)
 		pixel_put(&win->img, p1.x, p1.y, p1.color + win->c_factor);
 }
 
+//this function displays the menu in the map
 void	display_menu(t_mlx *win)
 {
 	mlx_string_put(win->mlx_connect, win->mlx_win, 1820, 20, -1,

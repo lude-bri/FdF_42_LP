@@ -12,6 +12,7 @@
 
 #include "../inc/fdf.h"
 
+//this function transforms rgb to int
 int	rgb_to_int(char *color)
 {
 	int		c;
@@ -34,6 +35,7 @@ int	rgb_to_int(char *color)
 	return (result);
 }
 
+//this function finds the max number in between two numbers
 int	ft_max(int number1, int number2)
 {
 	int	n;
@@ -45,6 +47,7 @@ int	ft_max(int number1, int number2)
 		return (number2);
 }
 
+//this function finds the mod of a number
 int	ft_mod(int n)
 {
 	if (n < 0)

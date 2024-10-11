@@ -15,6 +15,7 @@
 static unsigned char	interpolate_color(int icolor, int fcolor, float factor,
 							unsigned char (*get_component)(int));
 
+//this function checks if there is any color announced in the map (ex: 0,0xFFFFF)
 bool	check_color_true(t_map *map)
 {
 	int	y;
@@ -35,6 +36,7 @@ bool	check_color_true(t_map *map)
 	return (false);
 }
 
+//this function apply my colors regarging the size of z.
 void	apply_color_grading(t_map *map, t_z *z)
 {
 	int		y;
@@ -63,6 +65,8 @@ void	apply_color_grading(t_map *map, t_z *z)
 	free(z);
 }
 
+//this function gathers different colors groups to try.
+//I am using the first group. (i = 1)
 static void	colors_groups(t_point *point)
 {
 	int		colors[9][2];
@@ -91,6 +95,7 @@ static void	colors_groups(t_point *point)
 	point->fcolor = colors[i][1];
 }
 
+//this function apply the colors to line drawn.
 void	to_colorize(t_point *point, float normalized_z)
 {
 	unsigned char	rgb[3];
@@ -105,6 +110,7 @@ void	to_colorize(t_point *point, float normalized_z)
 	point->color = ((int)rgb[0] << 16 | (int)rgb[1] << 8 | rgb[2]);
 }
 
+//this aux function apply colors in R G and B.
 static unsigned char	interpolate_color(int icolor, int fcolor, float factor,
 								unsigned char (*get_component)(int))
 {

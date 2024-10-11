@@ -14,6 +14,7 @@
 
 static int	count_words(char const *str, char c);
 
+//this function get the dimensions of the map, calculating x and y
 int	get_dimensions(int *x, int *y, char	*file)
 {
 	char	*line;
@@ -37,6 +38,10 @@ int	get_dimensions(int *x, int *y, char	*file)
 	return (1);
 }
 
+//this function reads the map, getting the dimensions of x and y.
+//then initialize the map with the coordenates. And reads the map,
+//line by line. While the function reads the line, it fills the matrix
+//of the map.
 t_map	*read_map(char *filemap, int fd)
 {
 	t_map	*map;
@@ -66,6 +71,8 @@ t_map	*read_map(char *filemap, int fd)
 	return (map);
 }
 
+//this function takes a line and set the point x, y and z in the matrix.
+//also verify the range of z to apply the customs colors
 void	fill_mtrx(t_point *row, char *line, int y, t_z *z)
 {
 	char	**data;
@@ -93,6 +100,8 @@ void	fill_mtrx(t_point *row, char *line, int y, t_z *z)
 	free(data);
 }
 
+//this function set the points of the map -> x, y and z.
+//also verifies if there is colors (ex: 0,0xFFFFFF).
 void	set_point(t_point *point, char *str, int x, int y)
 {
 	char	**data;
@@ -116,6 +125,7 @@ void	set_point(t_point *point, char *str, int x, int y)
 	free_args(data);
 }
 
+//this function count how many words there is in a string
 static int	count_words(char const *str, char c)
 {
 	int	count;

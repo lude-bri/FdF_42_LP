@@ -12,6 +12,7 @@
 
 #include "../inc/fdf.h"
 
+//this function finds the ranges of z in the map (the z_max and z_min)
 void	to_range_z(t_z *z, char **data)
 {
 	int		max;
@@ -25,6 +26,7 @@ void	to_range_z(t_z *z, char **data)
 		z->z_min = min;
 }
 
+//this function finds the max value of z
 int	find_max(char **data)
 {
 	int		i;
@@ -45,6 +47,7 @@ int	find_max(char **data)
 	return (max);
 }
 
+//this function finds the min value of z
 int	find_min(char **data)
 {
 	int		i;

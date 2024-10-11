@@ -12,6 +12,7 @@
 
 #include "../inc/fdf.h"
 
+//this function deals the exit key to clean and exit the window
 int	check_event(int Key, t_mlx *mlx)
 {
 	if (Key == XK_Escape)
@@ -19,6 +20,7 @@ int	check_event(int Key, t_mlx *mlx)
 	return (0);
 }
 
+//this function deals with keys in keyboard
 int	arrow_keys(int Key, t_mlx *mlx)
 {
 	if (Key == XK_Right)
@@ -39,6 +41,7 @@ int	arrow_keys(int Key, t_mlx *mlx)
 	return (0);
 }
 
+//this function is aux to arrow_keys
 int	more_keys(int Key, t_mlx *mlx)
 {
 	if (Key == XK_1)
@@ -54,6 +57,7 @@ int	more_keys(int Key, t_mlx *mlx)
 	return (0);
 }
 
+//this function reset the map to the setup config
 void	reset_map(t_mlx *win)
 {
 	win->zoom = 10;

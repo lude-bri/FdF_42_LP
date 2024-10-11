@@ -12,6 +12,7 @@
 
 #include "../inc/fdf.h"
 
+//this function verify if we're dealing with a '.fdf' file
 int	sanity_check(char *name)
 {
 	int		len;

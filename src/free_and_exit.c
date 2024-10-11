@@ -12,6 +12,7 @@
 
 #include "../inc/fdf.h"
 
+//this function deals with error
 void	error_clean(int fd, char *str)
 {
 	ft_putstr_fd(str, 2);
@@ -19,6 +20,7 @@ void	error_clean(int fd, char *str)
 	exit(EXIT_FAILURE);
 }
 
+//this function free the arguments
 void	free_args(char **numbers)
 {
 	int	i;
@@ -34,6 +36,7 @@ void	free_args(char **numbers)
 	free(numbers);
 }
 
+//this function free the map
 void	free_map(t_map *map)
 {
 	int		c;
@@ -45,6 +48,7 @@ void	free_map(t_map *map)
 	free(map);
 }
 
+//this function erases the map and free everything
 void	clean_and_exit(t_mlx *mlx)
 {
 	if (mlx->mlx_connect)
@@ -61,6 +65,7 @@ void	clean_and_exit(t_mlx *mlx)
 	exit(0);
 }
 
+//this function closes and frees everything
 int	to_close(t_mlx *mlx)
 {
 	clean_and_exit(mlx);
