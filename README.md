@@ -10,5 +10,10 @@
 
 `FdF` is a fascinating project that transforms numerical matrices into beautiful 3D wireframe representations. Think of it as a digital cartographer that turns boring numbers into stunning topographic landscapes. This project combines mathematical elegance with graphical programming, all while adhering to the minimalist Unix philosophy.
 
+<div align=center>
+	<image src=img/japan-1.png>
+	<image src=img/japan-2.png>
+	<image src=img/japan-3.png>	
+</div>
 
-----
+---
