@@ -16,17 +16,25 @@
 	<image src=img/japan-3.png>	
 </div>
 
-Table of Contents
+<!-------Index-------->
 
-* The Magic of Isometric Projection
-* Linear Algebra Behind the Scenes
-* Pixel by Pixel: Drawing Basics
-* MiniLibX: The Graphics Wizard
-* Bresenham's Algorithm: Line Drawing
-* Project Structure
-Usage
-References
+## <a name="#index-0">Index</a>
 
+<ul>
+	<li><strong><a href="#1-the-magic-of-isometric-projection" style="color:white">1. The Magic of Isometric Projection </a></strong></li>
+	<li><strong><a href="#2-linear-algebra-behind-the-scenes" style="color:white">2. Linear Algebra Behind the Scenes </a></strong></li>
+	<li><strong><a href="#3-pixel-by-pixel-drawing-basics" style="color:white">3. Pixel by Pixel: Drawing Basics </a></strong></li>
+	<li><strong><a href="#4-bresenhams-algorithm-how-to-draw-a-line-in-a-computer" style="color:white">4. Bresenham's Algorithm: How to draw a line in a computer </a></strong></li>
+	<li><strong><a href="#5-results" style="color:white">5. Results </a></strong></li>
+</ul>
+
+<div align="center">
+<ul>
+	<li><strong><a href="#usage"> # Usage of FdF #</a></strong></li>
+</ul>
+	</div>
+ 
+-----------------------------------------------------------
 ---
 
 # <a name="#index-1">1. The Magic of Isometric Projection</a>
@@ -145,8 +153,97 @@ Bresenham's line algorithm is a line drawing algorithm that determines the point
 
 In the realm of computer graphics, drawing straight lines appears deceptively simple—until you realize displays are grids of discrete pixels while lines exist in continuous mathematical space. This fundamental tension birthed an entire class of line-drawing algorithms, with Bresenham's (1962) emerging as the elegant integer-based solution that conquered the problem without floating-point arithmetic.
 
+### Bresenham's Brilliance
 
-# <a name="#index-1">5. The Magic of Isometric Projection</a>
+The algorithm operates on three key insights:
+
+* Integer-Only Arithmetic: Uses decision parameters rather than floating-point calculations
+* Incremental Error Tracking: Maintains an "error term" to determine when to step diagonally
+* Octant Awareness: Handles all line slopes by considering eight directional octants
+
+For a line from (x₀,y₀) to (x₁,y₁), it:
+
+* Calculates Δx and Δy
+* Initializes a decision parameter (p = 2Δy - Δx)
+* Iteratively: Plots the current pixel, adjusts p based on whether it steps in x or both x and y, moves to the next pixel
+
+### Why It Beats Naïve Approaches
+
+Alternative methods like:
+
+* DDA (Digital Differential Analyzer): Uses floating-point steps → slow
+* Equation Solving: y = mx + b → rounding errors accumulate
+
+Bresenham avoids these pitfalls through what we might call "mathematical judo"—using the line's implicit equation to derive an integer-based decision parameter.
+
+You can see my implementation as follows:
+```c
+void	bresenham(t_mlx *win, t_point p1, t_point p2)
+{
+	float	x_step;
+	float	y_step;
+	int		max;
+
+	init_zoom(win, &p1, &p2);
+	if (win->view != 3)
+	{
+		isometric_view(&p1, win->view);
+		isometric_view(&p2, win->view);
+	}
+	p1.x += win->shift_x;
+	p1.y += win->shift_y;
+	p2.x += win->shift_x;
+	p2.y += win->shift_y;
+	x_step = p2.x - p1.x;
+	y_step = p2.y - p1.y;
+	max = ft_max(ft_mod(x_step), ft_mod(y_step));
+	x_step /= max;
+	y_step /= max;
+	while ((int)(p1.x - p2.x) || (int)(p1.y - p2.y))
+	{
+		pixel_draw(win, p1, p2);
+		p1.x += x_step;
+		p1.y += y_step;
+	}
+}
+```
+
+# <a name="#index-1">5. Results</a>
+<div align=center>
+	<image src=img/himalaya.png>
+	<image src=img/42-fdf-1.png>
+	<image src=img/42-fdf-2.png>
+	<image src=img/42-fdf-3.png>
+	<image src=img/42-fdf-4.png>
+</div>
+
+# Usage
+## Setup & Compilation
+
+1. Clone repository:
+
+```sh
+git clone git@github.com:lude-bri/FdF_42_LP.git
+```
+
+2. Go inside the project folder and run `make`:
+
+```sh
+cd FdF_42_LP
+make
+```
+
+3. Choose the map
+
+```c
+./fdf my_maps/japan.fdf
+```
+
+### License
+
+This work is published under the terms of <a href="https://github.com/lude-bri/42_Common_Core/blob/main/LICENSE.md">42 Unlicense</a>.
+
+<p align="right">(<a href="#readme-top">get to top</a>)</p>
 
 
 
