@@ -116,7 +116,36 @@ Even Bresenham's line algorithm - the workhorse of wireframe drawing - relies on
 
 # <a name="#index-1">3. Pixel by Pixel: Drawing Basics</a>
 
+At the heart of every wireframe rendering lies a fundamental truth - all computer graphics, no matter how complex, ultimately reduce to placing individual pixels on a screen. In FdF, this pixel-level control becomes our paintbrush, allowing us to transform mathematical abstractions into visible art.
+
+### The Canvas of Memory
+
+MiniLibX provides us with an image buffer - essentially a rectangular array of pixels in memory. Each pixel is represented by a 32-bit integer where:
+
+* 8 bits store red intensity (0-255)
+* 8 bits store green intensity (0-255)
+* 8 bits store blue intensity (0-255)
+* 8 bits handle transparency (alpha channel)
+
+The memory layout follows a strict linear sequence:
+```
+Pixel (0,0) | Pixel (1,0) | ... | Pixel (width-1,0) | Pixel (0,1) | ...
+```
+This linear array requires careful indexing to access any specific (x,y) coordinate.
+
+But this is just the surface of something incredible: drawing. How this works? Well, normally is the graphical library that handles it (just like minilibx). But there is methods, algorithms to paint, to draw a line in a computer.
+
+Placing individual pixels gives us ultimate control, drawing wireframes requires connecting these points efficiently. This is where Bresenham's algorithm enters the stage - a brilliant method that determines which pixels to illuminate when drawing straight lines between any two points, using only integer arithmetic for speed... but that's a story for our next chapter.
+
 # <a name="#index-1">4. Bresenham's Algorithm: How to draw a line in a computer</a>
+
+In computer graphics, a line drawing algorithm is an algorithm for approximating a line segment on discrete graphical media, such as pixel-based displays and printers. On such media, line drawing requires an approximation (in nontrivial cases). Basic algorithms rasterize lines in one color. A better representation with multiple color gradations requires an advanced process, spatial anti-aliasing.
+
+Bresenham's line algorithm is a line drawing algorithm that determines the points of an n-dimensional raster that should be selected in order to form a close approximation to a straight line between two points. It is commonly used to draw line primitives in a bitmap image (e.g. on a computer screen), as it uses only integer addition, subtraction, and bit shifting, all of which are very cheap operations in historically common computer architectures. It is an incremental error algorithm, and one of the earliest algorithms developed in the field of computer graphics. An extension to the original algorithm called the midpoint circle algorithm may be used for drawing circles.
+
+In the realm of computer graphics, drawing straight lines appears deceptively simple—until you realize displays are grids of discrete pixels while lines exist in continuous mathematical space. This fundamental tension birthed an entire class of line-drawing algorithms, with Bresenham's (1962) emerging as the elegant integer-based solution that conquered the problem without floating-point arithmetic.
+
+
 # <a name="#index-1">5. The Magic of Isometric Projection</a>
 
 
