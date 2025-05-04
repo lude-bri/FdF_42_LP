@@ -1,10 +1,14 @@
-# FdF_42_LP
-This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.
+<!-------FdF_Image-------->
+<a name="readme-top"></a>
+<p align="center">
+	<img src="https://capsule-render.vercel.app/api?type=venom&height=200&color=0ABAB5&text=FdF&fontAlign=50&fontAlignY=61&animation=fadeIn&fontColor=fcf3f2&fontSize=100" />
+</p>
 
-## FdF
+<!-------About-------->
 
-FdF is the short for Fil de Fer, which means Wireframe Model in French. A wireframe model is a visual representation of a 3D physical object used in 3D Graphics.
+## About
 
-## Develop
+`FdF` is a fascinating project that transforms numerical matrices into beautiful 3D wireframe representations. Think of it as a digital cartographer that turns boring numbers into stunning topographic landscapes. This project combines mathematical elegance with graphical programming, all while adhering to the minimalist Unix philosophy.
 
-## Flowchart
+
+----
